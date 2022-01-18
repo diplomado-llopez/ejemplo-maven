@@ -23,19 +23,22 @@ pipeline {
                  }
             }
         }
-        stage('Run') {
+        stage('SonarQube analysis'){
+            steps{
+                script{
+                    def scannerHome = tool 'sonar-scanner';
+                    withSonarQubeEnv('sonnarqube-server'){
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-maven -Dsonar.sources=src -Dsonar.java.binaries=build"
+                    }
+                }
+            }
+        }
+        stage('uploadNexus') {
             steps {
                 script {
                 sh './mvnw.cmd spring-boot:run'
                 }
             }
          }
-        stage('TestingAPP') {
-            steps {
-                script {
-                sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
-                }
-            }
-        }
     }
 }
