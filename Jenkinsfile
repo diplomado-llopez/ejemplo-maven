@@ -5,21 +5,21 @@ pipeline {
         stage('Compile') {
          steps {
                 script {
-                sh './mvnw.cmd clean compile -e'
+                sh './mvnw clean compile -e'
                 }
             }
         }
         stage('Test') {
            steps {
             script {
-                sh './mvnw.cmd clean test -e'
+                sh './mvnw clean test -e'
                 }
             }
         }
         stage('Jar') {
             steps {
                  script {
-                sh './mvnw.cmd clean package -e'
+                sh './mvnw clean package -e'
                  }
             }
         }
