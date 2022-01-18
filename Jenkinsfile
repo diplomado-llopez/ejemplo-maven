@@ -5,6 +5,7 @@ pipeline {
         stage('Compile') {
          steps {
                 script {
+                sh 'chmod +x mvnw'
                 sh './mvnw.cmd clean compile -e'
                 }
             }
