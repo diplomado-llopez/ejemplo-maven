@@ -10,8 +10,8 @@ pipeline {
             }
         }
         stage('Test') {
+           steps {
             script {
-                 steps {
                 sh './mvnw.cmd clean test -e'
                 }
             }
